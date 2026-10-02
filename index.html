@@ -121,9 +121,17 @@
             </div>
           </div>
           <div class="roulette-panel">
-            <span class="result-label">Resultado</span>
-            <strong id="roulette-result">—</strong>
-            <p id="roulette-message">Cuando estés listo, gira la ruleta.</p>
+            <span class="result-label">Poderes disponibles</span>
+            <div class="power-entry">
+              <input id="power-input" type="text" maxlength="40" placeholder="Escribe un poder…" aria-label="Nuevo poder">
+              <button class="add-power-button" id="add-power" type="button" aria-label="Agregar poder">+</button>
+            </div>
+            <div class="power-list" id="power-list" aria-live="polite"></div>
+            <div class="roulette-result">
+              <span class="result-label">Resultado</span>
+              <strong id="roulette-result">—</strong>
+              <p id="roulette-message">Agrega los poderes que proponga el público.</p>
+            </div>
             <button class="action-button" id="spin-button" type="button">Girar ruleta <span>↗</span></button>
           </div>
         </div>
