@@ -102,7 +102,9 @@ function renderWheel() {
   const stops = [];
   for (let i = 0; i < count; i++) {
     const color = i % 2 === 0 ? '#cc092f' : '#171717';
-    stops.push(`${color} ${i * segment}deg ${(i + 1) * segment}deg`);
+    stops.push(`#fff ${i * segment}deg ${i * segment + 1.2}deg`);
+    stops.push(`${color} ${i * segment + 1.2}deg ${(i + 1) * segment - 1.2}deg`);
+    stops.push(`#fff ${(i + 1) * segment - 1.2}deg ${(i + 1) * segment}deg`);
   }
   wheel.style.background = `conic-gradient(${stops.join(',')})`;
   spinButton.disabled = spinning;
