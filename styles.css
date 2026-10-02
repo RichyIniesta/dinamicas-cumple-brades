@@ -137,3 +137,17 @@ em{font-style:normal;color:var(--red)}
   .timer-layout{gap:55px}
   .time-inputs input{width:82px}
 }
+.power-entry{display:flex;gap:8px;margin:16px 0 12px}
+.power-entry input{flex:1;height:48px;border:1px solid var(--line);background:#fff;padding:0 14px;font-size:12px;min-width:0}
+.add-power-button{width:48px;height:48px;border:1px solid var(--black);background:var(--black);color:#fff;font-size:22px;font-weight:400}
+.add-power-button:hover{background:var(--red);border-color:var(--red)}
+.power-list{display:flex;flex-wrap:wrap;gap:7px;min-height:34px;margin-bottom:25px}
+.power-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;padding:8px 10px;font-size:10px;color:var(--black)}
+.power-chip button{border:0;background:transparent;color:#999;padding:0;font-size:14px;line-height:1}
+.power-chip button:hover{color:var(--red)}
+.roulette-result{border-top:1px solid var(--line);padding-top:18px;margin-bottom:24px}
+.roulette-result strong{font-size:clamp(38px,4vw,62px);margin:9px 0 7px}
+.roulette-result p{margin:0 0 4px}
+.wheel-label{position:absolute;left:50%;top:50%;width:34%;height:16px;transform-origin:center;display:flex;align-items:center;justify-content:center;color:#fff;font-size:clamp(7px,.8vw,10px);font-weight:600;letter-spacing:.01em;text-align:center;pointer-events:none}
+.wheel-empty{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:35%;line-height:1.5}
+@media(max-width:850px){.power-entry{max-width:600px}.power-list{max-width:600px}}
