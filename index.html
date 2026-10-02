@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dinámicas de cumpleaños Bradesco.">
+  <title>Dinámicas de cumpleaños | Bradesco</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Bradesco inicio">
+      <span class="brand-mark">★</span>
+      <span class="brand-name">bradesco</span>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#dinamicas">Dinámicas</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="menu-button" type="button" aria-label="Abrir menú">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Bradesco México</p>
+        <h1>Celebramos a las personas que hacen la diferencia.</h1>
+        <p class="hero-text">Un espacio para descubrir, participar y compartir las dinámicas de cumpleaños.</p>
+        <a class="button button-dark" href="#dinamicas">Ver dinámicas <span>→</span></a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="shape shape-one"></div>
+        <div class="shape shape-two"></div>
+        <div class="hero-card">
+          <span>01</span>
+          <strong>Celebrar</strong>
+          <small>conectar · compartir · disfrutar</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro section" id="como-funciona">
+      <p class="eyebrow">Una experiencia sencilla</p>
+      <h2>Todo lo necesario para hacer de cada cumpleaños un momento especial.</h2>
+      <p>Explora las dinámicas disponibles y elige la que quieras realizar. La interfaz está preparada para crecer con nuevas experiencias.</p>
+    </section>
+
+    <section class="dynamics section" id="dinamicas">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Dinámicas</p>
+          <h2>Elige una experiencia</h2>
+        </div>
+        <span class="section-number">01 / 03</span>
+      </div>
+
+      <div class="cards">
+        <article class="dynamic-card featured">
+          <div class="card-top"><span>01</span><span>Destacada</span></div>
+          <div class="card-content">
+            <h3>La dinámica del cumple</h3>
+            <p>Una experiencia interactiva para celebrar, participar y dejar un mensaje.</p>
+            <button class="text-link" type="button" data-action="open">Comenzar <span>↗</span></button>
+          </div>
+        </article>
+        <article class="dynamic-card">
+          <div class="card-top"><span>02</span><span>Próximamente</span></div>
+          <div class="card-content">
+            <h3>Mensaje sorpresa</h3>
+            <p>Un espacio para reunir mensajes y buenos deseos de todo el equipo.</p>
+            <span class="disabled-link">Próximamente</span>
+          </div>
+        </article>
+        <article class="dynamic-card">
+          <div class="card-top"><span>03</span><span>Próximamente</span></div>
+          <div class="card-content">
+            <h3>Reto de cumpleaños</h3>
+            <p>Una dinámica breve para jugar, participar y celebrar en equipo.</p>
+            <span class="disabled-link">Próximamente</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="statement section">
+      <div class="statement-mark">★</div>
+      <div>
+        <p class="eyebrow">Nuestra forma de celebrar</p>
+        <h2>Las personas están en el centro de todo lo que hacemos.</h2>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacto">
+    <div>
+      <span class="brand-name footer-brand">bradesco</span>
+      <p>Dinámicas de cumpleaños · Bradesco México</p>
+    </div>
+    <span>© 2026</span>
+  </footer>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-action="close"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-action="close" aria-label="Cerrar">×</button>
+      <p class="eyebrow">Dinámica</p>
+      <h2 id="modal-title">La dinámica del cumple</h2>
+      <p>Este espacio queda preparado para integrar la experiencia interactiva real.</p>
+      <button class="button button-red" data-action="close" type="button">Entendido</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
