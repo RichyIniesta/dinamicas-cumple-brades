@@ -58,21 +58,103 @@ document.querySelector('#slide-fullscreen').addEventListener('click', async () =
 });
 renderSlide();
 
-// Ruleta
-const powers = ['Súper voz','Súper baile','Súper memoria','Súper actuación','Súper velocidad','Súper talento'];
+// Ruleta dinámica
 const wheel = document.querySelector('#wheel');
 const spinButton = document.querySelector('#spin-button');
 const result = document.querySelector('#roulette-result');
 const resultMessage = document.querySelector('#roulette-message');
+const powerInput = document.querySelector('#power-input');
+const addPowerButton = document.querySelector('#add-power');
+const powerList = document.querySelector('#power-list');
+const savedPowers = JSON.parse(localStorage.getItem('bradesco-birthday-powers') || '[]');
+let powers = Array.isArray(savedPowers) ? savedPowers.filter(Boolean) : [];
 let rotation = 0;
 let spinning = false;
 
+function savePowers() {
+  localStorage.setItem('bradesco-birthday-powers', JSON.stringify(powers));
+}
+
+function renderPowerList() {
+  powerList.innerHTML = '';
+  powers.forEach((power, index) => {
+    const chip = document.createElement('span');
+    chip.className = 'power-chip';
+    chip.innerHTML = `<span>${power}</span><button type="button" data-remove-power="${index}" aria-label="Eliminar ${power}">×</button>`;
+    powerList.appendChild(chip);
+  });
+}
+
+function renderWheel() {
+  wheel.querySelectorAll('.wheel-label,.wheel-empty').forEach(el => el.remove());
+  const count = powers.length;
+  if (!count) {
+    wheel.style.background = '#171717';
+    const empty = document.createElement('div');
+    empty.className = 'wheel-empty';
+    empty.textContent = 'Agrega poderes para comenzar';
+    wheel.appendChild(empty);
+    spinButton.disabled = true;
+    return;
+  }
+
+  const segment = 360 / count;
+  const stops = [];
+  for (let i = 0; i < count; i++) {
+    const color = i % 2 === 0 ? '#cc092f' : '#171717';
+    stops.push(`${color} ${i * segment}deg ${(i + 1) * segment}deg`);
+  }
+  wheel.style.background = `conic-gradient(${stops.join(',')})`;
+  spinButton.disabled = spinning;
+
+  powers.forEach((power, index) => {
+    const label = document.createElement('span');
+    label.className = 'wheel-label';
+    label.textContent = power;
+    label.style.transform = `translate(-50%, -50%) rotate(${index * segment + segment / 2}deg) translateY(-112px)`;
+    wheel.appendChild(label);
+  });
+}
+
+function addPower() {
+  const power = powerInput.value.trim();
+  if (!power) return;
+  if (powers.some(item => item.toLocaleLowerCase() === power.toLocaleLowerCase())) {
+    showToast('Ese poder ya está en la ruleta.');
+    powerInput.focus();
+    return;
+  }
+  powers.push(power);
+  savePowers();
+  renderPowerList();
+  renderWheel();
+  powerInput.value = '';
+  powerInput.focus();
+  result.textContent = '—';
+  resultMessage.textContent = `${powers.length} poder${powers.length === 1 ? '' : 'es'} disponible${powers.length === 1 ? '' : 's'}.`;
+}
+
+addPowerButton.addEventListener('click', addPower);
+powerInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') addPower();
+});
+
+powerList.addEventListener('click', event => {
+  const button = event.target.closest('[data-remove-power]');
+  if (!button || spinning) return;
+  powers.splice(Number(button.dataset.removePower), 1);
+  savePowers();
+  renderPowerList();
+  renderWheel();
+});
+
 spinButton.addEventListener('click', () => {
-  if (spinning) return;
+  if (spinning || !powers.length) return;
   spinning = true;
   spinButton.disabled = true;
   result.textContent = '...';
   resultMessage.textContent = 'La ruleta está eligiendo un poder.';
+
   const index = Math.floor(Math.random() * powers.length);
   const segment = 360 / powers.length;
   const target = 360 - (index * segment + segment / 2);
@@ -80,13 +162,25 @@ spinButton.addEventListener('click', () => {
   const delta = 360 * 6 + ((target - normalized + 360) % 360);
   rotation += delta;
   wheel.style.transform = `rotate(${rotation}deg)`;
+
   setTimeout(() => {
-    result.textContent = powers[index];
-    resultMessage.textContent = '¡Es momento de usar ese poder!';
-    spinButton.disabled = false;
+    const selectedPower = powers[index];
+    result.textContent = selectedPower;
+    powers.splice(index, 1);
+    savePowers();
+    renderPowerList();
+    renderWheel();
     spinning = false;
+    spinButton.disabled = powers.length === 0;
+    resultMessage.textContent = powers.length
+      ? '¡Poder elegido! Ya puedes girar de nuevo.'
+      : 'No quedan poderes. Agrega nuevos para continuar.';
+    showToast(`Salió: ${selectedPower}`);
   }, 4300);
 });
+
+renderPowerList();
+renderWheel();
 
 // Temporizador
 const display = document.querySelector('#timer-display');
