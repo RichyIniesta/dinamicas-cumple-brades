@@ -7,12 +7,18 @@ const labels = {
   roulette: 'Ruleta de poderes',
   timer: 'Temporizador'
 };
+const navItems = [...document.querySelectorAll('[data-nav]')];
 
 function showView(name) {
   views.forEach(view => {
     const active = view.dataset.screen === name;
     view.classList.toggle('is-active', active);
     view.setAttribute('aria-hidden', String(!active));
+  });
+  navItems.forEach(item => {
+    const active = item.dataset.nav === name;
+    item.classList.toggle('is-active', active);
+    item.setAttribute('aria-current', active ? 'page' : 'false');
   });
   viewLabel.textContent = labels[name] || labels.home;
   window.scrollTo({top: 0, behavior: 'smooth'});
