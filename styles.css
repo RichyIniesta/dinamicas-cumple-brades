@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
   --red:#cc092f;
@@ -154,8 +154,6 @@ em{font-style:normal;color:var(--red)}
 
 
 /* ===== CELEBRATION POSTER THEME ===== */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap');
-
 body{background:#191919}
 
 .app-shell{background:#191919}
