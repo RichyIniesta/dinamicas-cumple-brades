@@ -20,7 +20,7 @@ function showView(name) {
     item.classList.toggle('is-active', active);
     item.setAttribute('aria-current', active ? 'page' : 'false');
   });
-  viewLabel.textContent = labels[name] || labels.home;
+  if (viewLabel) viewLabel.textContent = labels[name] || labels.home;
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -36,11 +36,11 @@ const slides = [...document.querySelectorAll('.slide')];
 let currentSlide = 0;
 const slideCurrent = document.querySelector('#slide-current');
 const slideTotal = document.querySelector('#slide-total');
-slideTotal.textContent = String(slides.length).padStart(2,'0');
+if (slideTotal) slideTotal.textContent = String(slides.length).padStart(2,'0');
 
 function renderSlide() {
   slides.forEach((slide, index) => slide.classList.toggle('is-visible', index === currentSlide));
-  slideCurrent.textContent = String(currentSlide + 1).padStart(2,'0');
+  if (slideCurrent) slideCurrent.textContent = String(currentSlide + 1).padStart(2,'0');
   document.querySelector('#slide-prev').disabled = currentSlide === 0;
   document.querySelector('#slide-next').innerHTML = currentSlide === slides.length - 1 ? 'Reiniciar <span>↻</span>' : 'Siguiente <span>→</span>';
 }
