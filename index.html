@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interfaz para las dinámicas de cumpleaños de Bradesco México.">
+  <meta name="description" content="Dinámicas de cumpleaños de Bradesco México.">
   <title>Dinámicas de cumpleaños | Bradesco México</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,25 +16,11 @@
       </button>
 
       <nav class="quick-nav" aria-label="Navegación de dinámicas">
-        <button class="nav-item is-active" type="button" data-view="home" data-nav="home">
-          <span>00</span> Inicio
-        </button>
-        <button class="nav-item" type="button" data-view="presentation" data-nav="presentation">
-          <span>01</span> Presentación
-        </button>
-        <button class="nav-item" type="button" data-view="roulette" data-nav="roulette">
-          <span>02</span> Ruleta
-        </button>
-        <button class="nav-item" type="button" data-view="timer" data-nav="timer">
-          <span>03</span> Temporizador
-        </button>
+        <button class="nav-item is-active" type="button" data-view="home" data-nav="home">Inicio</button>
+        <button class="nav-item" type="button" data-view="presentation" data-nav="presentation">Presentación</button>
+        <button class="nav-item" type="button" data-view="roulette" data-nav="roulette">Ruleta</button>
+        <button class="nav-item" type="button" data-view="timer" data-nav="timer">Temporizador</button>
       </nav>
-
-      <div class="header-context">
-        <span id="view-label">Dinámicas de cumpleaños</span>
-        <span class="header-dot" aria-hidden="true"></span>
-        <span>Bradesco México</span>
-      </div>
     </header>
 
     <main class="celebration-main">
@@ -42,67 +28,48 @@
       <span class="decor decor--ghost decor--two" aria-hidden="true">👻</span>
       <span class="decor decor--bolt decor--three" aria-hidden="true">⚡</span>
       <span class="decor decor--ghost decor--four" aria-hidden="true">👻</span>
-      <!-- INICIO -->
+
       <section class="view view-home is-active" data-screen="home">
         <div class="home-poster-frame">
           <div class="home-intro">
-          <p class="eyebrow">Experiencia · Bradesco México</p>
-          <h1>Dinámicas de<br><em>cumpleaños.</em></h1>
-          <p class="home-description">Una interfaz de apoyo para conducir las dinámicas de cumpleaños en pantalla.</p>
+            <h1>Dinámicas de<br><em>cumpleaños.</em></h1>
           </div>
 
-            <div class="access-grid">
-          <button class="access-card access-card--presentation" type="button" data-view="presentation">
-            <span class="access-index">01</span>
-            <span class="access-arrow">↗</span>
-            <span class="access-kicker">Experiencia guiada</span>
-            <strong>Inicio de<br>presentación</strong>
-            <span class="access-detail">Diapositivas para acompañar la dinámica.</span>
-          </button>
+          <div class="access-grid">
+            <button class="access-card access-card--presentation" type="button" data-view="presentation">
+              <span class="access-arrow">↗</span>
+              <strong>Inicio de<br>presentación</strong>
+            </button>
 
-          <button class="access-card access-card--roulette" type="button" data-view="roulette">
-            <span class="access-index">02</span>
-            <span class="access-arrow">↗</span>
-            <span class="access-kicker">Participación</span>
-            <strong>Ruleta de<br>poderes</strong>
-            <span class="access-detail">Gira y descubre el poder que toca.</span>
-          </button>
+            <button class="access-card access-card--roulette" type="button" data-view="roulette">
+              <span class="access-arrow">↗</span>
+              <strong>Ruleta de<br>poderes</strong>
+            </button>
 
-          <button class="access-card access-card--timer" type="button" data-view="timer">
-            <span class="access-index">03</span>
-            <span class="access-arrow">↗</span>
-            <span class="access-kicker">Control de tiempo</span>
-            <strong>Temporizador</strong>
-            <span class="access-detail">Cuenta regresiva para cada actividad.</span>
-          </button>
-          </div>
+            <button class="access-card access-card--timer" type="button" data-view="timer">
+              <span class="access-arrow">↗</span>
+              <strong>Temporizador</strong>
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- PRESENTACIÓN -->
       <section class="view presentation-view" data-screen="presentation" aria-hidden="true">
         <div class="presentation-stage">
-          <div class="slide-counter"><span id="slide-current">01</span> / <span id="slide-total">04</span></div>
           <div class="slide" data-slide="0">
-            <p class="slide-kicker">Dinámicas de cumpleaños</p>
             <h2>Hoy celebramos<br><em>a lo grande.</em></h2>
-            <p>Una pausa para compartir, jugar y celebrar a quienes cumplen años.</p>
+            <p>Una pausa para compartir, jugar y celebrar.</p>
           </div>
           <div class="slide" data-slide="1">
-            <p class="slide-kicker">01 · Comenzamos</p>
             <h2>¿Listos para<br><em>celebrar?</em></h2>
-            <p>Sigamos las instrucciones de nuestra presentadora y disfrutemos la dinámica.</p>
+            <p>Sigamos las instrucciones y disfrutemos la dinámica.</p>
           </div>
           <div class="slide" data-slide="2">
-            <p class="slide-kicker">02 · El momento</p>
             <h2>Es hora de<br><em>participar.</em></h2>
-            <p>La siguiente actividad nos pondrá a prueba. ¡Que comience el juego!</p>
+            <p>¡Que comience el juego!</p>
           </div>
           <div class="slide" data-slide="3">
-            <p class="slide-kicker">03 · Cierre</p>
             <h2>¡Gracias por<br><em>celebrar juntos!</em></h2>
-            <p>Nos vemos en la próxima celebración de cumpleaños.</p>
           </div>
           <div class="slide-brand-mark" aria-hidden="true">✦</div>
         </div>
@@ -113,12 +80,9 @@
         </div>
       </section>
 
-      <!-- RULETA -->
       <section class="view roulette-view" data-screen="roulette" aria-hidden="true">
         <div class="tool-heading">
-          <p class="eyebrow">02 · Participación</p>
           <h2>Ruleta de <em>poderes.</em></h2>
-          <p>Gira la ruleta para descubrir el poder de la siguiente persona.</p>
         </div>
         <div class="roulette-layout">
           <div class="wheel-wrap">
@@ -128,28 +92,23 @@
             </div>
           </div>
           <div class="roulette-panel">
-            <span class="result-label">Poderes disponibles</span>
             <div class="power-entry">
               <input id="power-input" type="text" maxlength="40" placeholder="Escribe un poder…" aria-label="Nuevo poder">
               <button class="add-power-button" id="add-power" type="button" aria-label="Agregar poder">+</button>
             </div>
             <div class="power-list" id="power-list" aria-live="polite"></div>
             <div class="roulette-result">
-              <span class="result-label">Resultado</span>
               <strong id="roulette-result">—</strong>
-              <p id="roulette-message">Agrega los poderes que proponga el público.</p>
+              <p id="roulette-message">Agrega poderes para comenzar.</p>
             </div>
             <button class="action-button" id="spin-button" type="button">Girar ruleta <span>↗</span></button>
           </div>
         </div>
       </section>
 
-      <!-- TEMPORIZADOR -->
       <section class="view timer-view" data-screen="timer" aria-hidden="true">
         <div class="tool-heading">
-          <p class="eyebrow">03 · Control de tiempo</p>
           <h2>Temporizador.</h2>
-          <p>Define el tiempo de la actividad y ponla en marcha.</p>
         </div>
         <div class="timer-layout">
           <div class="timer-display" id="timer-display">01:00</div>
@@ -167,11 +126,6 @@
         </div>
       </section>
     </main>
-
-    <footer class="app-footer">
-      <span>Bradesco México</span>
-      <span>Dinámicas de cumpleaños · <span id="year"></span></span>
-    </footer>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
