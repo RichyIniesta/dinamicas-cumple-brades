@@ -390,3 +390,127 @@ body{background:#191919}
   .slide h2{font-size:62px}
   .decor{display:none}
 }
+
+
+/* ===== 16:9 PRESENTATION LAYOUT ===== */
+html,body{width:100%;min-height:100%;overflow:hidden}
+.app-shell{height:100vh;min-height:0}
+.app-header{height:64px;flex:0 0 64px;padding:0 3.5vw}
+.brand-name{font-size:20px}
+.quick-nav{gap:8px}
+.nav-item{padding:0 13px;font-size:11px}
+.nav-item span{display:none}
+.nav-item::after{left:10px;right:10px;bottom:7px}
+
+.celebration-main{
+  height:calc(100vh - 64px);
+  min-height:0;
+  padding:28px 0;
+  overflow:hidden;
+  display:flex;
+  align-items:stretch;
+}
+
+.view-home,.presentation-view,.roulette-view,.timer-view{
+  width:min(90vw,1580px);
+  height:calc(100vh - 120px);
+  min-height:0;
+  margin:auto;
+  padding:54px 64px;
+  border:7px solid rgba(255,255,255,.94);
+  overflow:hidden;
+}
+
+.view-home{justify-content:center}
+.home-intro{max-width:none}
+.home-intro h1{
+  font-size:clamp(78px,8.4vw,132px);
+  line-height:.76;
+  margin:0;
+}
+.home-description{display:none}
+
+.access-grid{
+  margin-top:58px;
+  height:285px;
+  min-height:285px;
+}
+.access-card{
+  min-height:0;
+  height:100%;
+  padding:27px 30px;
+}
+.access-card strong{
+  font-size:clamp(40px,3.4vw,58px);
+}
+.access-index,.access-kicker,.access-detail{display:none}
+.access-arrow{top:22px;right:25px;font-size:27px}
+
+.presentation-view,.roulette-view,.timer-view{padding:42px 54px}
+.presentation-stage{
+  min-height:0;
+  height:calc(100% - 60px);
+  flex:none;
+  padding:70px;
+}
+.slide h2{font-size:clamp(76px,8.4vw,132px);margin-bottom:24px}
+.slide p:last-child{font-size:17px;margin:0}
+.slide-kicker,.slide-counter{display:none}
+.slide-brand-mark{font-size:330px;bottom:-16%}
+.presentation-controls{height:52px;padding-top:10px;flex:none}
+
+.tool-heading{max-width:none;flex:none}
+.tool-heading h2{font-size:clamp(68px,7.2vw,110px);margin:0}
+.tool-heading p:last-child{display:none}
+
+.roulette-layout{
+  flex:1;
+  min-height:0;
+  padding-top:12px;
+  grid-template-columns:minmax(480px,620px) minmax(360px,460px);
+  justify-content:center;
+  gap:7vw;
+}
+.wheel-wrap{width:min(39vw,540px)}
+.roulette-panel{padding:24px;align-self:center}
+.roulette-result{margin-top:20px}
+.roulette-result strong{font-size:clamp(42px,4.2vw,64px)}
+.roulette-result p{margin-bottom:20px}
+.power-list{max-height:120px;overflow:auto}
+
+.timer-layout{
+  flex:1;
+  min-height:0;
+  margin-top:20px;
+  padding:35px;
+  gap:8vw;
+}
+.timer-display{font-size:clamp(130px,17vw,230px)}
+.timer-controls{min-width:300px}
+
+.app-footer{display:none}
+
+.decor--one{left:2%;top:7%}
+.decor--two{right:2%;top:13%}
+.decor--three{left:2%;bottom:7%}
+.decor--four{right:2%;bottom:9%}
+
+@media(max-width:1100px){
+  .view-home,.presentation-view,.roulette-view,.timer-view{padding:42px}
+  .access-grid{height:250px;min-height:250px}
+  .roulette-layout{grid-template-columns:minmax(380px,500px) minmax(300px,390px);gap:4vw}
+  .wheel-wrap{width:min(42vw,470px)}
+}
+@media(max-width:850px){
+  html,body{overflow:auto}
+  .app-shell{height:auto;min-height:100vh}
+  .celebration-main{height:auto;min-height:calc(100vh - 64px);padding:18px 0;overflow:visible}
+  .view-home,.presentation-view,.roulette-view,.timer-view{
+    width:92vw;height:auto;min-height:calc(100vh - 100px);overflow:visible;padding:32px 25px
+  }
+  .access-grid{height:auto;min-height:0;grid-template-columns:1fr}
+  .access-card{height:150px;min-height:150px}
+  .roulette-layout{grid-template-columns:1fr;gap:28px}
+  .wheel-wrap{width:min(72vw,430px)}
+  .power-list{max-height:none}
+}
