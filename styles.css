@@ -630,3 +630,93 @@ html,body{background:#cc092f;color:#fff}
 @media(max-width:850px){
   .access-card{border-right:0;border-bottom:1px solid #eadde0}
 }
+
+
+/* ===== FINAL FLIP CLOCK / TITLE CONTRAST ===== */
+.tool-heading h2 em{color:#fff !important}
+
+.timer-display{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(8px,1vw,16px);
+  width:min(760px,58vw);
+  min-height:220px;
+  padding:clamp(18px,2vw,30px);
+  background:linear-gradient(180deg,#ed263f 0%,#d90d32 100%);
+  border:8px solid #a90727;
+  border-radius:24px;
+  box-shadow:
+    inset 0 7px 0 rgba(255,255,255,.12),
+    inset 0 -8px 0 rgba(120,0,20,.2),
+    0 18px 38px rgba(75,0,18,.28);
+  color:#fff;
+  letter-spacing:0;
+  font-family:Inter,Arial,sans-serif;
+}
+.flip-group{
+  display:flex;
+  gap:clamp(5px,.7vw,10px);
+}
+.flip-digit{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:clamp(82px,6.2vw,116px);
+  height:clamp(125px,9.2vw,172px);
+  overflow:hidden;
+  background:linear-gradient(180deg,#fff 0%,#f7f7f7 49.5%,#e7e7e7 50%,#fff 100%);
+  border:4px solid #b80a26;
+  border-radius:8px;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.9),
+    inset 0 -2px 0 rgba(0,0,0,.12),
+    0 4px 8px rgba(80,0,20,.22);
+  color:#bd0b28;
+  font-family:'Barlow Condensed',Inter,Arial,sans-serif;
+  font-size:clamp(92px,8vw,150px);
+  line-height:.8;
+  font-weight:700;
+  letter-spacing:-.04em;
+  text-shadow:0 1px 0 #fff;
+}
+.flip-digit::before,
+.flip-digit::after{
+  content:"";
+  position:absolute;
+  left:-4px;
+  right:-4px;
+  height:2px;
+  background:#a90727;
+  opacity:.7;
+}
+.flip-digit::before{top:50%}
+.flip-digit::after{top:calc(50% - 1px);box-shadow:0 1px 0 rgba(255,255,255,.45)}
+.flip-separator{
+  color:#fff;
+  font-family:'Barlow Condensed',Inter,Arial,sans-serif;
+  font-size:clamp(72px,6vw,112px);
+  line-height:1;
+  font-weight:700;
+  margin-top:-3px;
+  text-shadow:0 2px 0 rgba(120,0,20,.3);
+}
+.timer-done .timer-display{
+  background:linear-gradient(180deg,#f02b46 0%,#c9082d 100%);
+}
+.timer-layout{
+  gap:clamp(45px,7vw,110px);
+}
+@media(max-width:1100px){
+  .timer-display{width:min(680px,62vw);min-height:190px}
+  .flip-digit{width:clamp(65px,7vw,95px);height:clamp(100px,10vw,145px)}
+}
+@media(max-width:850px){
+  .timer-display{
+    width:min(94vw,560px);
+    min-height:150px;
+    border-width:6px;
+    border-radius:18px;
+  }
+  .flip-digit{width:clamp(48px,14vw,76px);height:clamp(75px,20vw,110px);font-size:clamp(58px,14vw,95px)}
+}
