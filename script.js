@@ -206,7 +206,19 @@ function formatTime(total) {
   return `${minutes}:${seconds}`;
 }
 function renderTimer() {
-  display.textContent = formatTime(timerSeconds);
+  const time = formatTime(timerSeconds);
+  const [minutes, seconds] = time.split(':');
+  display.innerHTML = `
+    <div class="flip-group" aria-label="Minutos">
+      <span class="flip-digit">${minutes[0]}</span>
+      <span class="flip-digit">${minutes[1]}</span>
+    </div>
+    <span class="flip-separator">:</span>
+    <div class="flip-group" aria-label="Segundos">
+      <span class="flip-digit">${seconds[0]}</span>
+      <span class="flip-digit">${seconds[1]}</span>
+    </div>
+  `;
 }
 function stopTimer() {
   clearInterval(timerInterval);
