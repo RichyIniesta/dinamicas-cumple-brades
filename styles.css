@@ -512,3 +512,121 @@ html,body{width:100%;min-height:100%;overflow:hidden}
   .wheel-wrap{width:min(72vw,430px)}
   .power-list{max-height:none}
 }
+
+
+/* ===== RED BACKGROUND / WHITE TYPE ===== */
+html,body{background:#cc092f;color:#fff}
+.app-shell{background:#cc092f}
+.app-header{
+  background:#cc092f;
+  color:#fff;
+  box-shadow:none;
+  border-bottom:1px solid rgba(255,255,255,.22);
+}
+.brand,.brand-name{color:#fff}
+.brand-mark{background:#fff;color:var(--red)}
+.nav-item{color:rgba(255,255,255,.68)}
+.nav-item:hover,.nav-item.is-active{color:#fff}
+.nav-item span{color:rgba(255,255,255,.5)}
+.nav-item.is-active span{color:#fff}
+.nav-item::after{background:#fff}
+.celebration-main{
+  background:
+    repeating-conic-gradient(from 0deg at 50% 50%,rgba(115,0,25,.42) 0deg 4deg,transparent 4deg 11deg),
+    radial-gradient(circle at 50% 48%,#e51a42 0%,#cc092f 48%,#a90727 100%);
+}
+.celebration-main::before{
+  background:repeating-conic-gradient(from 2deg at 50% 50%,transparent 0deg 8deg,rgba(255,255,255,.055) 8deg 9deg,transparent 9deg 17deg);
+}
+.view-home,.presentation-view,.roulette-view,.timer-view{
+  background:transparent;
+  border-color:rgba(255,255,255,.2);
+  box-shadow:none;
+  color:#fff;
+}
+.home-intro h1,.slide h2,.tool-heading h2,.timer-display{color:#fff}
+.home-intro h1 em,.slide h2 em,.timer-done .timer-display{color:#fff}
+.access-grid{border-top:1px solid rgba(255,255,255,.65);border-bottom:1px solid rgba(255,255,255,.3)}
+.access-card{
+  border-right:1px solid rgba(255,255,255,.3);
+  color:var(--black);
+  background:#fff;
+  box-shadow:0 10px 28px rgba(85,0,18,.16);
+}
+.access-card--presentation,.access-card--roulette,.access-card--timer{
+  background:#fff;
+  color:var(--black);
+}
+.access-card--presentation:hover,.access-card--roulette:hover,.access-card--timer:hover{background:#fff}
+.access-card strong{color:var(--black)}
+.access-arrow{color:var(--red)}
+.presentation-stage{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:none;
+}
+.slide p:last-child,.tool-heading p:last-child{color:rgba(255,255,255,.86)}
+.slide-brand-mark{color:#fff;opacity:.12}
+.presentation-controls{border-top:1px solid rgba(255,255,255,.2)}
+.control-button{
+  background:#fff;
+  color:var(--black);
+  border-color:#fff;
+}
+.control-button--main{
+  background:#fff;
+  color:var(--red);
+  border-color:#fff;
+}
+.control-button:hover{border-color:#fff;background:#fff}
+.roulette-layout{color:#fff}
+.roulette-panel{
+  background:#fff;
+  color:var(--black);
+  border:0;
+  box-shadow:0 14px 35px rgba(80,0,20,.2);
+}
+.roulette-panel strong{color:var(--red)}
+.result-label{color:#777}
+.power-entry input,
+.time-inputs input{
+  background:#fff;
+  color:var(--black);
+  border-color:#ddd;
+}
+.add-power-button,
+.action-button{
+  background:#fff;
+  color:var(--red);
+  border-color:#fff;
+}
+.add-power-button:hover,.action-button:hover{background:#f7f7f7;border-color:#fff;color:var(--red-dark)}
+.power-chip{
+  background:#fff;
+  color:var(--black);
+  border-color:#ddd;
+}
+.roulette-result{border-top-color:#e3e3e3}
+.roulette-result p{color:#666}
+.timer-layout{
+  background:transparent;
+  border:0;
+  padding:20px 0;
+  margin-top:20px;
+}
+.time-inputs label span{color:rgba(255,255,255,.8)}
+.time-separator{color:#fff}
+.secondary-button{
+  background:#fff;
+  color:var(--red);
+  border-color:#fff;
+}
+.secondary-button:hover{background:#f7f7f7;border-color:#fff;color:var(--red-dark)}
+.toast{background:#fff;color:var(--red)}
+.wheel-center{background:#fff;color:var(--red)}
+.wheel-pointer{border-bottom-color:#fff}
+.app-footer{background:transparent;color:#fff}
+
+@media(max-width:850px){
+  .access-card{border-right:0;border-bottom:1px solid #eadde0}
+}
