@@ -38,8 +38,16 @@ document.querySelector('#slide-next').addEventListener('click', () => {
 });
 document.querySelector('#slide-fullscreen').addEventListener('click', async () => {
   const stage = document.querySelector('.presentation-stage');
-  if (!document.fullscreenElement) await stage.requestFullscreen?.();
-  else await document.exitFullscreen?.();
+
+  try {
+    if (!document.fullscreenElement) {
+      await stage.requestFullscreen?.();
+    } else {
+      await document.exitFullscreen?.();
+    }
+  } catch {
+    showToast('La pantalla completa no está disponible.');
+  }
 });
 renderSlide();
 
@@ -51,8 +59,15 @@ const resultMessage = document.querySelector('#roulette-message');
 const powerInput = document.querySelector('#power-input');
 const addPowerButton = document.querySelector('#add-power');
 const powerList = document.querySelector('#power-list');
-const savedPowers = JSON.parse(localStorage.getItem('bradesco-birthday-powers') || '[]');
-let powers = Array.isArray(savedPowers) ? savedPowers.filter(Boolean) : [];
+let powers = [];
+try {
+  const savedPowers = JSON.parse(localStorage.getItem('bradesco-birthday-powers') || '[]');
+  powers = Array.isArray(savedPowers)
+    ? savedPowers.filter(power => typeof power === 'string' && power.trim())
+    : [];
+} catch {
+  powers = [];
+}
 let rotation = 0;
 let spinning = false;
 
@@ -65,7 +80,17 @@ function renderPowerList() {
   powers.forEach((power, index) => {
     const chip = document.createElement('span');
     chip.className = 'power-chip';
-    chip.innerHTML = `<span>${power}</span><button type="button" data-remove-power="${index}" aria-label="Eliminar ${power}">×</button>`;
+
+    const label = document.createElement('span');
+    label.textContent = power;
+
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.dataset.removePower = String(index);
+    removeButton.setAttribute('aria-label', `Eliminar ${power}`);
+    removeButton.textContent = '×';
+
+    chip.append(label, removeButton);
     powerList.appendChild(chip);
   });
 }
