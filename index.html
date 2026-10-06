@@ -20,6 +20,7 @@
         <button class="nav-item" type="button" data-view="presentation" data-nav="presentation">Presentación</button>
         <button class="nav-item" type="button" data-view="roulette" data-nav="roulette">Ruleta</button>
         <button class="nav-item" type="button" data-view="timer" data-nav="timer">Temporizador</button>
+        <button class="nav-item" type="button" data-view="qr" data-nav="qr">Encuesta</button>
       </nav>
     </header>
 
@@ -121,6 +122,32 @@
           </div>
         </div>
       </section>
+
+       <section class="view timer-view" data-screen="timer" aria-hidden="true">
+        <div class="tool-heading">
+          <h2>Califica tu experiencia</h2>
+          </div>
+        </div>
+              <div class="contenedor-centrado">
+              <img src="ruta-de-tu-imagen.jpg" alt="Descripción de la imagen">
+            </div>
+
+            <style>
+              .contenedor-centrado {
+                display: flex;
+                justify-content: center; /* Centra horizontalmente */
+                align-items: center;     /* Centra verticalmente */
+                height: 300px;           /* Altura opcional del contenedor */
+                width: 100%;             /* Ancho del contenedor */
+              }
+              
+              .contenedor-centrado img {
+                max-width: 100%;         /* Evita que la imagen rebase el contenedor */
+                height: auto;
+              }
+            </style>
+      </section>
+
     </main>
   </div>
 
