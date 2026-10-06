@@ -56,6 +56,9 @@ const wheel = document.querySelector('#wheel');
 const spinButton = document.querySelector('#spin-button');
 const result = document.querySelector('#roulette-result');
 const resultMessage = document.querySelector('#roulette-message');
+const announcement = document.querySelector('#roulette-announcement');
+const announcementText = document.querySelector('#roulette-announcement-text');
+let announcementTimer = null;
 const powerInput = document.querySelector('#power-input');
 const addPowerButton = document.querySelector('#add-power');
 const powerList = document.querySelector('#power-list');
@@ -187,12 +190,23 @@ spinButton.addEventListener('click', () => {
     resultMessage.textContent = powers.length
       ? '¡Poder elegido! Ya puedes girar de nuevo.'
       : 'No quedan poderes. Agrega nuevos para continuar.';
-    showToast(`Salió: ${selectedPower}`);
+    showRouletteAnnouncement(selectedPower);
   }, 4300);
 });
 
 renderPowerList();
 renderWheel();
+
+function showRouletteAnnouncement(power) {
+  clearTimeout(announcementTimer);
+  announcementText.textContent = power;
+  announcement.classList.add('is-visible');
+  announcement.setAttribute('aria-hidden', 'false');
+  announcementTimer = setTimeout(() => {
+    announcement.classList.remove('is-visible');
+    announcement.setAttribute('aria-hidden', 'true');
+  }, 3000);
+}
 
 // Temporizador
 const display = document.querySelector('#timer-display');
