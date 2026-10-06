@@ -720,3 +720,16 @@ html,body{background:#cc092f;color:#fff}
   }
   .flip-digit{width:clamp(48px,14vw,76px);height:clamp(75px,20vw,110px);font-size:clamp(58px,14vw,95px)}
 }
+
+
+/* ===== IMAGE BACKGROUND ===== */
+html,body,.app-shell{background:#cc092f}
+.celebration-main{
+  background-color:#cc092f;
+  background-image:url('img/BG-PAGE.png');
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:cover;
+}
+.celebration-main::before,
+.celebration-main::after{display:none}
