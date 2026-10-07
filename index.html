@@ -51,23 +51,15 @@
       </section>
 
       <section class="view presentation-view" data-screen="presentation" aria-hidden="true">
-        <div class="presentation-stage">
-          <div class="slide" data-slide="0">
-            <h2>Hoy celebramos<br><em>a lo grande.</em></h2>
-            <p>Una pausa para compartir, jugar y celebrar.</p>
+        <div class="presentation-stage" id="presentation-stage">
+          <div class="presentation-loading" id="presentation-loading">Cargando presentación…</div>
+          <div class="presentation-empty" id="presentation-empty" hidden>
+            <strong>No hay imágenes todavía.</strong>
+            <span>Agrega tus imágenes en <b>img/presentacion/</b> dentro de GitHub.</span>
           </div>
-          <div class="slide" data-slide="1">
-            <h2>¿Listos para<br><em>celebrar?</em></h2>
-            <p>Sigamos las instrucciones y disfrutemos la dinámica.</p>
+          <div class="presentation-image-wrap" id="presentation-image-wrap" hidden>
+            <img id="presentation-image" alt="Diapositiva de la presentación">
           </div>
-          <div class="slide" data-slide="2">
-            <h2>Es hora de<br><em>participar.</em></h2>
-            <p>¡Que comience el juego!</p>
-          </div>
-          <div class="slide" data-slide="3">
-            <h2>¡Gracias por<br><em>celebrar juntos!</em></h2>
-          </div>
-          <div class="slide-brand-mark" aria-hidden="true">✦</div>
         </div>
         <div class="presentation-controls">
           <button type="button" class="control-button" id="slide-prev" aria-label="Diapositiva anterior">←</button>
