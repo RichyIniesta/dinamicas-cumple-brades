@@ -51,10 +51,15 @@
       </section>
 
       <section class="view presentation-view" data-screen="presentation" aria-hidden="true">
-        <div class="presentation-stage" id="presentation-stage" aria-label="Visor de presentación" tabindex="0">
+        <div class="presentation-stage" id="presentation-stage">
           <div class="presentation-image-wrap" id="presentation-image-wrap" hidden>
             <img id="presentation-image" class="presentation-image" alt="Diapositiva de la presentación">
           </div>
+        </div>
+        <div class="presentation-controls">
+          <button type="button" class="control-button" id="slide-prev" aria-label="Diapositiva anterior">←</button>
+          <button type="button" class="control-button control-button--main" id="slide-next">Siguiente <span>→</span></button>
+          <button type="button" class="control-button" id="slide-fullscreen" aria-label="Pantalla completa">⛶</button>
         </div>
       </section>
 
