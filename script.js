@@ -23,6 +23,9 @@ document.addEventListener('click', event => {
 
 // Presentación desde GitHub
 const presentationStage = document.querySelector('#presentation-stage');
+const presentationPrev = document.querySelector('#slide-prev');
+const presentationNext = document.querySelector('#slide-next');
+const presentationFullscreen = document.querySelector('#slide-fullscreen');
 const presentationImageWrap = document.querySelector('#presentation-image-wrap');
 const presentationImage = document.querySelector('#presentation-image');
 const PRESENTATION_FOLDER_API = 'https://api.github.com/repos/RichyIniesta/dinamicas-cumple-brades/contents/img/presentacion?ref=main';
@@ -43,11 +46,15 @@ async function loadPresentationImages() {
       : [];
     currentSlide = 0;
     presentationImageWrap.hidden = !presentationImages.length;
-    if (!presentationImages.length) return;
+    if (!presentationImages.length) {
+      updatePresentationControls();
+      return;
+    }
     presentationImageWrap.hidden = false;
     renderPresentationImage();
   } catch (error) {
     presentationImageWrap.hidden = true;
+    updatePresentationControls();
     console.error(error);
   }
 }
@@ -60,6 +67,15 @@ function renderPresentationImage() {
   presentationImageWrap.classList.remove('is-changing');
   requestAnimationFrame(() => presentationImageWrap.classList.add('is-changing'));
   updatePresentationControls();
+}
+
+function updatePresentationControls() {
+  const hasImages = presentationImages.length > 0;
+  presentationPrev.disabled = !hasImages || currentSlide === 0;
+  presentationNext.disabled = !hasImages;
+  presentationNext.innerHTML = hasImages && currentSlide === presentationImages.length - 1
+    ? 'Reiniciar <span>↻</span>'
+    : 'Siguiente <span>→</span>';
 }
 
 function nextPresentationImage() {
@@ -86,7 +102,9 @@ async function togglePresentationFullscreen() {
   }
 }
 
-presentationStage.addEventListener('dblclick', togglePresentationFullscreen);
+presentationPrev.addEventListener('click', previousPresentationImage);
+presentationNext.addEventListener('click', nextPresentationImage);
+presentationFullscreen.addEventListener('click', togglePresentationFullscreen);
 
 // Ruleta dinámica
 const wheel = document.querySelector('#wheel');
