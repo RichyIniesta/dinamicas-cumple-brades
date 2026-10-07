@@ -95,3 +95,13 @@ button:focus-visible,input:focus-visible{outline:2px solid #fff;outline-offset:3
 
 /* Lienzo 16:9 para pantallas de comedor */
 @media(min-width:851px){.app-shell{min-height:100vh;height:auto;}.celebration-main{min-height:0;height:calc(100% - 68px);}.view{min-height:0;height:100%;}}
+
+.presentation-stage{display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.08)}
+.presentation-loading,.presentation-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:#fff;font-size:13px;line-height:1.5}
+.presentation-empty strong{font-family:'Barlow Condensed',Inter,Arial,sans-serif;font-size:42px;line-height:.9;text-transform:uppercase}
+.presentation-empty span{max-width:560px;color:rgba(255,255,255,.78)}
+.presentation-image-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.99);transition:opacity .28s ease,transform .28s ease}
+.presentation-image-wrap.is-changing{opacity:1;transform:scale(1)}
+.presentation-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+@media(min-width:851px){.presentation-stage{min-height:0}.presentation-image-wrap{min-height:0}}
+@media(max-width:850px){.presentation-image-wrap{min-height:0}.presentation-image{max-height:100%}}
