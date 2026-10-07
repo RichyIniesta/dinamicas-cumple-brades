@@ -105,6 +105,7 @@ async function togglePresentationFullscreen() {
 presentationPrev.addEventListener('click', previousPresentationImage);
 presentationNext.addEventListener('click', nextPresentationImage);
 presentationFullscreen.addEventListener('click', togglePresentationFullscreen);
+loadPresentationImages();
 
 // Ruleta dinámica
 const wheel = document.querySelector('#wheel');
