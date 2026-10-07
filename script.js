@@ -23,21 +23,14 @@ document.addEventListener('click', event => {
 
 // Presentación desde GitHub
 const presentationStage = document.querySelector('#presentation-stage');
-const presentationLoading = document.querySelector('#presentation-loading');
-const presentationEmpty = document.querySelector('#presentation-empty');
 const presentationImageWrap = document.querySelector('#presentation-image-wrap');
 const presentationImage = document.querySelector('#presentation-image');
-const presentationPrev = document.querySelector('#slide-prev');
-const presentationNext = document.querySelector('#slide-next');
-const presentationFullscreen = document.querySelector('#slide-fullscreen');
 const PRESENTATION_FOLDER_API = 'https://api.github.com/repos/RichyIniesta/dinamicas-cumple-brades/contents/img/presentacion?ref=main';
 const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp|gif|avif)$/i;
 let presentationImages = [];
 let currentSlide = 0;
 
 async function loadPresentationImages() {
-  presentationLoading.hidden = false;
-  presentationEmpty.hidden = true;
   presentationImageWrap.hidden = true;
   try {
     const response = await fetch(PRESENTATION_FOLDER_API, {cache: 'no-store'});
@@ -49,20 +42,12 @@ async function loadPresentationImages() {
           .sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true, sensitivity: 'base'}))
       : [];
     currentSlide = 0;
-    presentationLoading.hidden = true;
-    if (!presentationImages.length) {
-      presentationEmpty.hidden = false;
-      updatePresentationControls();
-      return;
-    }
+    presentationImageWrap.hidden = !presentationImages.length;
+    if (!presentationImages.length) return;
     presentationImageWrap.hidden = false;
     renderPresentationImage();
   } catch (error) {
-    presentationLoading.hidden = true;
-    presentationEmpty.hidden = false;
-    presentationEmpty.querySelector('strong').textContent = 'No se pudo cargar la presentación.';
-    presentationEmpty.querySelector('span').textContent = 'Verifica que las imágenes estén en img/presentacion/ y que el repositorio sea accesible.';
-    updatePresentationControls();
+    presentationImageWrap.hidden = true;
     console.error(error);
   }
 }
@@ -77,31 +62,19 @@ function renderPresentationImage() {
   updatePresentationControls();
 }
 
-function updatePresentationControls() {
-  const hasImages = presentationImages.length > 0;
-  presentationPrev.disabled = !hasImages || currentSlide === 0;
-  presentationNext.disabled = !hasImages;
-  presentationNext.innerHTML = hasImages && currentSlide === presentationImages.length - 1
-    ? 'Reiniciar <span>↻</span>'
-    : 'Siguiente <span>→</span>';
-}
-
 function nextPresentationImage() {
   if (!presentationImages.length) return;
   currentSlide = currentSlide === presentationImages.length - 1 ? 0 : currentSlide + 1;
   renderPresentationImage();
 }
 
-presentationPrev.addEventListener('click', () => {
-  if (currentSlide > 0) {
-    currentSlide--;
-    renderPresentationImage();
-  }
-});
+function previousPresentationImage() {
+  if (!presentationImages.length) return;
+  currentSlide = currentSlide === 0 ? presentationImages.length - 1 : currentSlide - 1;
+  renderPresentationImage();
+}
 
-presentationNext.addEventListener('click', nextPresentationImage);
-
-presentationFullscreen.addEventListener('click', async () => {
+async function togglePresentationFullscreen() {
   try {
     if (!document.fullscreenElement) {
       await presentationStage.requestFullscreen?.();
@@ -111,9 +84,9 @@ presentationFullscreen.addEventListener('click', async () => {
   } catch {
     showToast('La pantalla completa no está disponible.');
   }
-});
+}
 
-loadPresentationImages();
+presentationStage.addEventListener('dblclick', togglePresentationFullscreen);
 
 // Ruleta dinámica
 const wheel = document.querySelector('#wheel');
@@ -360,7 +333,8 @@ function showToast(message) {
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') showView('home');
   if (document.querySelector('[data-screen="presentation"]').classList.contains('is-active')) {
-    if (event.key === 'ArrowRight') document.querySelector('#slide-next').click();
-    if (event.key === 'ArrowLeft') document.querySelector('#slide-prev').click();
+    if (event.key === 'ArrowRight') nextPresentationImage();
+    if (event.key === 'ArrowLeft') previousPresentationImage();
+    if (event.key.toLowerCase() === 'f') togglePresentationFullscreen();
   }
 });
