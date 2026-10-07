@@ -21,27 +21,90 @@ document.addEventListener('click', event => {
   if (target) showView(target.dataset.view);
 });
 
-// Presentación
-const slides = [...document.querySelectorAll('.slide')];
+// Presentación desde GitHub
+const presentationStage = document.querySelector('#presentation-stage');
+const presentationLoading = document.querySelector('#presentation-loading');
+const presentationEmpty = document.querySelector('#presentation-empty');
+const presentationImageWrap = document.querySelector('#presentation-image-wrap');
+const presentationImage = document.querySelector('#presentation-image');
+const presentationPrev = document.querySelector('#slide-prev');
+const presentationNext = document.querySelector('#slide-next');
+const presentationFullscreen = document.querySelector('#slide-fullscreen');
+const PRESENTATION_FOLDER_API = 'https://api.github.com/repos/RichyIniesta/dinamicas-cumple-brades/contents/img/presentacion?ref=main';
+const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp|gif|avif)$/i;
+let presentationImages = [];
 let currentSlide = 0;
-function renderSlide() {
-  slides.forEach((slide, index) => slide.classList.toggle('is-visible', index === currentSlide));
-  document.querySelector('#slide-prev').disabled = currentSlide === 0;
-  document.querySelector('#slide-next').innerHTML = currentSlide === slides.length - 1 ? 'Reiniciar <span>↻</span>' : 'Siguiente <span>→</span>';
-}
-document.querySelector('#slide-prev').addEventListener('click', () => {
-  if (currentSlide > 0) { currentSlide--; renderSlide(); }
-});
-document.querySelector('#slide-next').addEventListener('click', () => {
-  currentSlide = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-  renderSlide();
-});
-document.querySelector('#slide-fullscreen').addEventListener('click', async () => {
-  const stage = document.querySelector('.presentation-stage');
 
+async function loadPresentationImages() {
+  presentationLoading.hidden = false;
+  presentationEmpty.hidden = true;
+  presentationImageWrap.hidden = true;
+  try {
+    const response = await fetch(PRESENTATION_FOLDER_API, {cache: 'no-store'});
+    if (!response.ok) throw new Error('No se pudo consultar la carpeta de presentación.');
+    const files = await response.json();
+    presentationImages = Array.isArray(files)
+      ? files
+          .filter(file => file.type === 'file' && IMAGE_EXTENSIONS.test(file.name))
+          .sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true, sensitivity: 'base'}))
+      : [];
+    currentSlide = 0;
+    presentationLoading.hidden = true;
+    if (!presentationImages.length) {
+      presentationEmpty.hidden = false;
+      updatePresentationControls();
+      return;
+    }
+    presentationImageWrap.hidden = false;
+    renderPresentationImage();
+  } catch (error) {
+    presentationLoading.hidden = true;
+    presentationEmpty.hidden = false;
+    presentationEmpty.querySelector('strong').textContent = 'No se pudo cargar la presentación.';
+    presentationEmpty.querySelector('span').textContent = 'Verifica que las imágenes estén en img/presentacion/ y que el repositorio sea accesible.';
+    updatePresentationControls();
+    console.error(error);
+  }
+}
+
+function renderPresentationImage() {
+  if (!presentationImages.length) return;
+  const file = presentationImages[currentSlide];
+  presentationImage.src = file.download_url;
+  presentationImage.alt = `Diapositiva ${currentSlide + 1} de ${presentationImages.length}: ${file.name}`;
+  presentationImageWrap.classList.remove('is-changing');
+  requestAnimationFrame(() => presentationImageWrap.classList.add('is-changing'));
+  updatePresentationControls();
+}
+
+function updatePresentationControls() {
+  const hasImages = presentationImages.length > 0;
+  presentationPrev.disabled = !hasImages || currentSlide === 0;
+  presentationNext.disabled = !hasImages;
+  presentationNext.innerHTML = hasImages && currentSlide === presentationImages.length - 1
+    ? 'Reiniciar <span>↻</span>'
+    : 'Siguiente <span>→</span>';
+}
+
+function nextPresentationImage() {
+  if (!presentationImages.length) return;
+  currentSlide = currentSlide === presentationImages.length - 1 ? 0 : currentSlide + 1;
+  renderPresentationImage();
+}
+
+presentationPrev.addEventListener('click', () => {
+  if (currentSlide > 0) {
+    currentSlide--;
+    renderPresentationImage();
+  }
+});
+
+presentationNext.addEventListener('click', nextPresentationImage);
+
+presentationFullscreen.addEventListener('click', async () => {
   try {
     if (!document.fullscreenElement) {
-      await stage.requestFullscreen?.();
+      await presentationStage.requestFullscreen?.();
     } else {
       await document.exitFullscreen?.();
     }
@@ -49,7 +112,8 @@ document.querySelector('#slide-fullscreen').addEventListener('click', async () =
     showToast('La pantalla completa no está disponible.');
   }
 });
-renderSlide();
+
+loadPresentationImages();
 
 // Ruleta dinámica
 const wheel = document.querySelector('#wheel');
